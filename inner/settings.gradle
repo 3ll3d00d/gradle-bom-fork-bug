@@ -1,0 +1,8 @@
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'inner'
+include('base', 'middle', 'upper', 'bom', 'fork')

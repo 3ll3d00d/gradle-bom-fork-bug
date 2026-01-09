@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'java-test-fixtures'
+    id 'maven-publish'
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+dependencies {
+    api project(':base')
+
+    testFixturesApi testFixtures(project(':base'))
+}
+
+testing {
+    suites {
+        test {
+            useJUnitJupiter('5.12.1')
+        }
+    }
+}

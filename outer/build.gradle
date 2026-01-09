@@ -1,0 +1,4 @@
+subprojects {
+    it.group = 'org.example'
+    it.version = '1.0.0'
+}

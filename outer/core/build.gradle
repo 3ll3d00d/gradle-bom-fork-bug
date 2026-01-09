@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+    id 'java-test-fixtures'
+}
+
+def triggerBug = findProperty('triggerBug') != null
+if (triggerBug) {
+    logger.lifecycle('TRIGGERING BUG *** importing platform to testFixturesApi')
+}
+
+dependencies {
+    api 'org.example:upper'
+    testImplementation testFixtures('org.example:upper')
+    testFixturesApi testFixtures('org.example:upper')
+
+    api platform('org.example:bom:1.+')
+    if (triggerBug) {
+        testFixturesApi platform('org.example:bom:1.+')
+    }
+}
+
+testing {
+    suites {
+        test {
+            useJUnitJupiter('5.12.1')
+        }
+    }
+}

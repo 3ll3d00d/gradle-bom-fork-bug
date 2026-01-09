@@ -1,0 +1,24 @@
+plugins {
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.javaPlatform
+        }
+    }
+}
+
+dependencies {
+    constraints {
+        api project(':base')
+        api project(':fork')
+        api project(':middle')
+        api project(':upper')
+    }
+}

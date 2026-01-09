@@ -1,0 +1,16 @@
+dependencyResolutionManagement {
+    repositories {
+        exclusiveContent {
+            forRepository {
+                mavenLocal()
+            }
+            filter {
+                includeGroup('org.example')
+            }
+        }
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'outer'
+include('core')

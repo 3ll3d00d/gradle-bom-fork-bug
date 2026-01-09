@@ -1,0 +1,37 @@
+plugins {
+    id 'java-library'
+    id 'java-test-fixtures'
+    id 'maven-publish'
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+def avoidBug = findProperty('avoidBug') != null
+if (avoidBug) {
+    logger.lifecycle("AVOIDING BUG *** Publishing inner without dependency on fork")
+}
+dependencies {
+    api project(':middle')
+
+    testFixturesApi testFixtures(project(':middle'))
+    if (!avoidBug) {
+        testFixturesApi project(':fork')
+    }
+}
+
+testing {
+    suites {
+        test {
+            useJUnitJupiter('5.12.1')
+        }
+    }
+}

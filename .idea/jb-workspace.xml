@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WorkspaceSettings">
+    <project name="inner" path="$PROJECT_DIR$/inner" />
+    <project name="outer" path="$PROJECT_DIR$/outer" />
+    <project name="composite" path="$PROJECT_DIR$/composite" />
+    <project name="bom" path="$PROJECT_DIR$/inner/bom/build/publications/mavenJava" />
+    <project name="base" path="$PROJECT_DIR$/inner/base/build/publications/mavenJava" />
+    <project name="fork" path="$PROJECT_DIR$/inner/fork/build/publications/mavenJava" />
+    <project name="upper" path="$PROJECT_DIR$/inner/upper/build/publications/mavenJava" />
+    <project name="middle" path="$PROJECT_DIR$/inner/middle/build/publications/mavenJava" />
+    <option name="workspace" value="true" />
+  </component>
+</project>

@@ -21,14 +21,37 @@ jobs:
         build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
         build-scan-terms-of-use-agree: "yes"
 
-    - name: Run Inner build
+    - name: Reproducer 1 - Run Inner build
       working-directory: ./inner
-      run: ./gradlew publishToMavenLocal
+      run: ./gradlew clean publishToMavenLocal
 
-    - name: Run Outer build in success mode
+    - name: Reproducer 1 - Run Outer build in success mode (should succeed)
       working-directory: ./outer
-      run: ./gradlew build
+      run: ./gradlew clean build
 
-    - name: Run Outer build in failure mode
+    - name: Reproducer 1 - Run Outer build in failure mode (should fail)
       working-directory: ./outer
-      run: ./gradlew -PtriggerBug=true build
+      run: ./gradlew -PtriggerBug=true clean build
+      continue-on-error: true
+
+    - name: Reproducer 2 - Run Inner build without fork
+      working-directory: ./inner
+      run: ./gradlew -PavoidBug=true clean publishToMavenLocal
+
+    - name: Reproducer 2 - Run Outer build in success mode
+      working-directory: ./outer
+      run: ./gradlew clean build
+
+    - name: Reproducer 2 - Run Outer build in failure mode (should succeed)
+      working-directory: ./outer
+      run: ./gradlew -PtriggerBug=true clean build
+      continue-on-error: true
+
+    - name: Reproducer 3 - Run Composite build in success mode (should succeed)
+      working-directory: ./composite
+      run: ./gradlew clean :outer:core:build
+
+    - name: Reproducer 3 - Run Composite build in failure mode (should succeed)
+      working-directory: ./composite
+      run: ./gradlew -PtriggerBug=true clean :outer:core:build
+

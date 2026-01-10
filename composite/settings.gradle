@@ -1,0 +1,9 @@
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'composite'
+includeBuild '../inner'
+includeBuild '../outer'

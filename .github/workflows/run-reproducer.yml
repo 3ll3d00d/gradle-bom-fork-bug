@@ -49,9 +49,9 @@ jobs:
 
     - name: Reproducer 3 - Run Composite build in success mode (should succeed)
       working-directory: ./composite
-      run: ./gradlew clean :outer:core:build
+      run: ./gradlew :outer:core:clean :outer:core:build
 
     - name: Reproducer 3 - Run Composite build in failure mode (should succeed)
       working-directory: ./composite
-      run: ./gradlew -PtriggerBug=true clean :outer:core:build
+      run: ./gradlew -PtriggerBug=true :outer:core:clean :outer:core:build
 
